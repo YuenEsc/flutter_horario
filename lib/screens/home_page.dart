@@ -8,12 +8,14 @@ import 'package:flutter_horario/widgets/week_view.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter_horario/widgets/course_list_tile.dart';
 import 'package:flutter_horario/screens/edit_page.dart';
+
+import 'package:flutter_horario/models/colors.dart';
 class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: independence,
       appBar: AppBar(
         title: Text(
           'Flutter Horario',
@@ -24,9 +26,12 @@ class HomePage extends StatelessWidget {
           StoreBuilder<AppState>(
             builder: (context, store){
               return IconButton(
-                icon: Icon(CommunityMaterialIcons.pen_plus),
+                icon: Icon(
+                    CommunityMaterialIcons.pen_plus,
+                    color: maximumBlueGreen
+                ),
                 onPressed: () {
-                  store.dispatch(SetFormColorAction(Colors.red.value));
+                  store.dispatch(SetFormColorAction(mandarin.value));
                   store.dispatch(SetFormCourseIdAction(null));
                   Navigator.push(
                     context,
@@ -37,7 +42,9 @@ class HomePage extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: Icon(CommunityMaterialIcons.book_multiple),
+            icon: Icon(
+                CommunityMaterialIcons.book_multiple,
+                color: maximumBlueGreen),
             onPressed: () {
               showCoursesList(context);
             },
@@ -55,7 +62,10 @@ Future<void> showCoursesList(BuildContext context) async {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Selecciona un curso para editarlo'),
+        title: Text(
+          'Selecciona un curso para editarlo',
+        ),
+        backgroundColor: independence,
         content: SingleChildScrollView(
           child: StoreConnector<AppState, List<CourseListTile>>(
             converter: (store) => store.state.courses.map((course) => CourseListTile(course)).toList(),
@@ -68,7 +78,7 @@ Future<void> showCoursesList(BuildContext context) async {
         ),
         actions: <Widget>[
           RaisedButton(
-            color: Color(0xAAE71616),
+            color: fieryRose,
             child: Text("CERRAR",
               style: Theme.of(context).textTheme.copyWith(button: TextStyle(
                 color: Colors.white,

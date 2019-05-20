@@ -6,8 +6,10 @@ import 'package:flutter_horario/state/state.dart';
 import 'package:flutter_horario/models/course.dart';
 import 'package:flutter_horario/models/lesson.dart';
 
+import 'package:flutter_horario/widgets/input_container.dart';
 import 'package:flutter_horario/widgets/color_form_picker.dart';
 import 'package:community_material_icon/community_material_icon.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 
 class EditForm extends StatefulWidget{
@@ -52,61 +54,127 @@ class _EditFormState extends State<EditForm>{
                 }
                 return Flexible(
                     child:  ListView(
+                      shrinkWrap: true,
                       children: <Widget>[
                         ListTile(
-                          leading: const Icon(CommunityMaterialIcons.notebook),
-                          title: new TextFormField(
-                            initialValue: editCourse != null ? editCourse.subject : null,
-                            decoration: new InputDecoration(
-                              hintText: "Materia",
+                          contentPadding: EdgeInsets.symmetric(horizontal:16, vertical: 0),
+                          dense: true,
+                          leading: Icon(
+                            CommunityMaterialIcons.notebook,
+                            color: maximumBlueGreen,
+                          ),
+                          title: InputContainer(
+                            child: TextFormField(
+                              initialValue: editCourse != null ? editCourse.subject : null,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              decoration: new InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 2.0),
+                                hintText: "Materia",
+                                hintStyle: TextStyle(
+                                  color: romanSilver,
+                                ),
+                                errorStyle: TextStyle(
+                                    color: fieryRose
+                                ),
+                                border: InputBorder.none,
+                              ),
+                              validator: (value){
+                                if(value.isEmpty){
+                                  return 'Ingresa la materia';
+                                }
+                                else if(value.length > 20){
+                                  return 'No debe ser mayor a 20 caracteres';
+                                }
+                              },
+                              onSaved: (value){
+                                setState((){
+                                  _formCourse.subject = value;
+                                });
+                              },
                             ),
-                            validator: (value){
-                              if(value.isEmpty){
-                                return 'Ingresa la materia';
-                              }
-                            },
-                            onSaved: (value){
-                              setState((){
-                                _formCourse.subject = value;
-                              });
-                            },
+                          )
+                        ),
+                        ListTile(
+                          contentPadding: EdgeInsets.symmetric(horizontal:16, vertical: 0),
+                          dense: true,
+                          leading: Icon(
+                              CommunityMaterialIcons.teach,
+                              color: maximumBlueGreen,
+                          ),
+                          title: InputContainer(
+                            child: new TextFormField(
+                              initialValue: editCourse != null ? editCourse.professor : null,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              decoration: new InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                  hintText: "Profesor",
+                                  hintStyle: TextStyle(
+                                    color: romanSilver,
+                                  ),
+                                  errorStyle: TextStyle(
+                                    color: fieryRose
+                                  ),
+                                  border: InputBorder.none,
+                              ),
+                              validator: (value){
+                                if(value.isEmpty){
+                                  return 'Ingresa el nombre del profesor';
+                                }
+                                else if(value.length > 20){
+                                  return 'No debe ser mayor a 20 caracteres';
+                                }
+                              },
+                              onSaved: (value){
+                                setState((){
+                                  _formCourse.professor = value;
+                                });
+                              },
+                            ),
                           ),
                         ),
                         ListTile(
-                          leading: const Icon(CommunityMaterialIcons.teach),
-                          title: new TextFormField(
-                            initialValue: editCourse != null ? editCourse.professor : null,
-                            decoration: new InputDecoration(
-                              hintText: "Profesor",
-                            ),
-                            validator: (value){
-                              if(value.isEmpty){
-                                return 'Ingresa el nombre del profesor';
-                              }
-                            },
-                            onSaved: (value){
-                              setState((){
-                                _formCourse.professor = value;
-                              });
-                            },
+                          contentPadding: EdgeInsets.symmetric(horizontal:16, vertical: 0),
+                          dense: true,
+                          leading: Icon(
+                            CommunityMaterialIcons.pound_box,
+                            color: maximumBlueGreen,
                           ),
-                        ),
-                        ListTile(
-                          leading: const Icon(CommunityMaterialIcons.pound_box),
-                          title: new TextFormField(
-                            initialValue: editCourse != null ? editCourse.room : null,
-                            decoration: new InputDecoration(
-                              hintText: "Salón",
+                          title: InputContainer(
+                            child: new TextFormField(
+                              initialValue: editCourse != null ? editCourse.room : null,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              decoration: new InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                                hintText: "Salón",
+                                hintStyle: TextStyle(
+                                  color: romanSilver,
+                                ),
+                                errorStyle: TextStyle(
+                                    color: fieryRose
+                                ),
+                                border: InputBorder.none,
+                              ),
+                              validator: (value){
+                                if(value.length > 8){
+                                  return 'No debe exceder 8 caracteres';
+                                }
+                              },
+                              onSaved: (value){
+                                setState((){
+                                  _formCourse.room = value;
+                                });
+                              },
                             ),
-                            onSaved: (value){
-                              setState((){
-                                _formCourse.room = value;
-                              });
-                            },
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),
+                          padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
                           child: StoreBuilder<AppState>(
                               builder: (context, store){
                                 return RaisedButton(
@@ -132,7 +200,13 @@ class _EditFormState extends State<EditForm>{
                                       Navigator.of(context).pop();
                                     }
                                   },
-                                  child: Text('Guardar curso'),
+                                  color: maximumBlueGreen,
+                                  child: Text(
+                                    'Guardar curso',
+                                    style: TextStyle(
+                                      color: Colors.white70
+                                    )
+                                  ),
                                 );
                               }
                           ),

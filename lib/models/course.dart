@@ -32,7 +32,7 @@ class Course{
       return Course.form(
         id: parsedJson['id'] != null ? parsedJson['id'] : null,
         subject: parsedJson['subject'] != null ? parsedJson['subject'] : null,
-        professor : parsedJson['professor'] != null ? parsedJson['subject'] : null,
+        professor : parsedJson['professor'] != null ? parsedJson['professor'] : null,
         color : parsedJson['color'] != null  ? parsedJson ['color'] : null,
         room : parsedJson['room'] != null ? parsedJson['room'] : null,
       );

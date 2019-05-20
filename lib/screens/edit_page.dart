@@ -7,6 +7,7 @@ import 'package:flutter_horario/state/state.dart';
 import 'package:flutter_horario/widgets/edit_view.dart';
 import 'package:flutter_horario/widgets/edit_form.dart';
 import 'package:community_material_icon/community_material_icon.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 class EditPage extends StatelessWidget {
 
@@ -14,12 +15,15 @@ class EditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: true,
-      backgroundColor: Colors.white,
+      backgroundColor: independence,
       appBar: AppBar(
         leading: StoreBuilder<AppState>(
           builder: (context, store){
             return IconButton(
-                icon: Icon(CommunityMaterialIcons.close),
+                icon: Icon(
+                  CommunityMaterialIcons.close,
+                  color: fieryRose,
+                ),
                 onPressed: (){
                   if(store.state.formCourseId == null){
                     store.dispatch(ResetSelectValueFormLessonAction());
@@ -42,11 +46,11 @@ class EditPage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 5,
             child: EditView()
           ),
           Expanded(
-            flex: 1,
+            flex: 3,
             child: EditForm(),
           )
         ],

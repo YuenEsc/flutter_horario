@@ -28,14 +28,15 @@ class WeekView extends StatelessWidget {
             SliverPersistentHeader(
               delegate: WeekViewHeaderDelegate(),
               pinned: true,
+              floating: false,
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 2.0),
+              padding: EdgeInsets.symmetric(horizontal: 2.0, vertical: 5.0),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 6,
-                  mainAxisSpacing: 0.0,
-                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 2.0,
+                  crossAxisSpacing: 2.0,
                   childAspectRatio: .6666666,
                 ),
                 delegate: SliverChildBuilderDelegate(

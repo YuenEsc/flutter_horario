@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_horario/models/lesson.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 class LessonGridTile extends StatelessWidget{
 
@@ -23,29 +24,35 @@ class LessonGridTile extends StatelessWidget{
           onDoubleTap: (){
             Flushbar(
               title: lesson.course.subject,
-              message: lesson.course.professor,
-              backgroundColor: Color(0xFF171b21),
+              message: "Profesor: " + lesson.course.professor + "\nSalón:"+lesson.course.room ?? 'Sin definir',
+              backgroundColor: charcoal,
               icon: Icon(
                 Icons.info_outline,
                 size: 28.0,
-                color: Color(0xAA5d66ea),
+                color: maximumBlueGreen,
               ),
               duration: Duration(seconds: 3),
-              leftBarIndicatorColor: Color(0xAA5d66ea),
+              leftBarIndicatorColor: maximumBlueGreen,
             )..show(context);
           },
           child: Center(
             child: GridTile(
-              child: AutoSizeText(
-                lesson.course.subject,
-                style: Theme.of(context).textTheme.copyWith(
-                    title: TextStyle(
-                        fontFamily: 'Manrope',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16
-                    )
-                ).title,
-                textAlign: TextAlign.center,
+              child: SizedBox.expand(
+                child: Center(
+                  child: AutoSizeText(
+                    lesson.course.subject,
+                    style: Theme.of(context).textTheme.copyWith(
+                        title: TextStyle(
+                            fontFamily: 'Manrope',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16
+                        ),
+                    ).title,
+                    maxFontSize: 32,
+                    minFontSize: 10,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               )
             )
           )

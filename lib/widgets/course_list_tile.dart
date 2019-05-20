@@ -7,6 +7,7 @@ import 'package:flutter_horario/models/course.dart';
 
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter_horario/screens/edit_page.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 class CourseListTile extends StatefulWidget{
   final Course course;
@@ -21,7 +22,7 @@ class _CourseListTileState extends State<CourseListTile>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 1.0),
+      margin: EdgeInsets.symmetric(vertical: 4.0),
       child: StoreBuilder<AppState>(
           builder: (context, store){
             return ListTile(
@@ -30,7 +31,10 @@ class _CourseListTileState extends State<CourseListTile>{
                 ),
                 subtitle: Text(widget.course.professor),
                 trailing: IconButton(
-                    icon: Icon(CommunityMaterialIcons.trash_can) ,
+                    icon: Icon(
+                      CommunityMaterialIcons.trash_can,
+                      color: yankeesBlue,
+                    ) ,
                     onPressed: (){
                       store.dispatch(RemoveCourseFromLessonsAction(courseId: widget.course.id));
                       store.dispatch(UpdateFormLessonsAction(updatedLessons: store.state.lessons));

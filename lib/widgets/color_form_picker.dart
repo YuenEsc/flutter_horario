@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 class ColorFormPicker extends FormField<Color> {
   final ValueChanged<Color> onColorChange;
@@ -41,20 +42,40 @@ class ColorFormPicker extends FormField<Color> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: independence,
           title: Text('Selecciona un color:'),
           content: SingleChildScrollView(
             child: MaterialColorPicker(
-              allowShades: true,
-              onColorChange: (Color color) {
+              allowShades: false,
+              onMainColorChange: (Color color) {
                 state.didChange(color);
                 onColorChanged(color);
               },
               selectedColor: state.value,
+              colors: <ColorSwatch>[
+                mandarin,
+                ufoGreen,
+                maximumYellowRed,
+                spiroDiscoBall,
+                heliotrope,
+                fieryRose,
+                turquoise,
+                gold,
+                fieldDrab,
+                mediumOrchid,
+                navyPurple,bittersweet,
+                roseRed,
+                grainYellow,
+                begonia,
+                celadonGreen,
+                seaGreen,
+                cobaltBlue,
+              ],
             ),
           ),
           actions: <Widget>[
             RaisedButton(
-              color: Color(0xAAE71616),
+              color: fieryRose,
               child: Text("CERRAR",
                 style: Theme.of(context).textTheme.copyWith(button: TextStyle(
                   color: Colors.white,

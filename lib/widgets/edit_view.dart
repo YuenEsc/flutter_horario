@@ -8,6 +8,7 @@ import 'package:flutter_horario/widgets/week_view_header_delegate.dart';
 import 'package:flutter_horario/widgets/form_lesson_grid_tile.dart';
 import 'package:flutter_horario/widgets/time_grid_tile.dart';
 import 'package:flutter_horario/widgets/empty_grid_tile.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 class EditView extends StatelessWidget {
 
@@ -30,12 +31,12 @@ class EditView extends StatelessWidget {
               pinned: true,
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 2.0),
+              padding: EdgeInsets.symmetric(horizontal: 2.0, vertical: 5.0),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 6,
-                  mainAxisSpacing: 0.0,
-                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 2.0,
+                  crossAxisSpacing: 2.0,
                   childAspectRatio: .6666666,
                 ),
                 delegate: SliverChildBuilderDelegate(
@@ -49,7 +50,7 @@ class EditView extends StatelessWidget {
                     }
                     else{
                       lessonsIndex++;
-                      return EmptyGridTile(backgroundColor: Colors.black87,);
+                      return EmptyGridTile(backgroundColor: charcoal,);
                     }
                   },
                   childCount: formLessons.length,

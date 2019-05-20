@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_horario/widgets/day_tile.dart';
 
+import 'package:flutter_horario/models/colors.dart';
+
 class WeekViewHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   static const headerHeight = 50.0;
@@ -8,7 +10,10 @@ class WeekViewHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: maximumBlueGreen,
+      ),
       child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

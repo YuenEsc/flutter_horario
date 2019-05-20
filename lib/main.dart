@@ -6,7 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_persist/redux_persist.dart';
 import 'package:redux_persist_flutter/redux_persist_flutter.dart';
-
+import 'package:flutter_horario/models/colors.dart';
 
 void main() async{
 
@@ -39,18 +39,20 @@ class FlutterHorarioApp extends StatelessWidget {
   Widget build(BuildContext context) => StoreProvider(
     store: store,
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Horario',
       theme: ThemeData(
           primaryColorLight: Colors.white,
-          primaryColorDark: Color(0xFF171b21),
-          primaryColor: Colors.white,
+          primaryColorDark: yankeesBlue,
+          primaryColor: independence,
+          accentColor: maximumBlueGreen,
           textTheme: TextTheme(
 //          display4,
 //          display3,
 //          display2,
 //          display1,
 //          headline,
-            title: TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w600),
+            title: TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w600, color: Colors.white),
             subhead: TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w500),
             body2: TextStyle(fontFamily: 'Manrope', fontWeight: FontWeight.w400),
             body1: TextStyle(fontFamily: 'Manrope'),

@@ -1,6 +1,6 @@
 import 'package:flutter_horario/models/course.dart';
 import 'package:flutter_horario/models/lesson.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_horario/models/colors.dart';
 
 class AppState {
   static final int daysOfTheWeek = 5;
@@ -24,7 +24,7 @@ class AppState {
         List.unmodifiable([]),
         List.unmodifiable(newLessons),
         List.unmodifiable(formNewLessons),
-        Colors.red.value,
+        mandarin.value,
         null
     );
   }
@@ -35,9 +35,18 @@ class AppState {
       List<Course> courses = coursesJson.map((i) => Course.fromJson(i)).toList();
       var lessonsJson = parsedJson['lessons'] != null ? parsedJson['lessons'] as List : [];
       List<Lesson> lessons = lessonsJson.map((i) => Lesson.fromJson(i)).toList();
-      var formLessonsJson = parsedJson['formlessons'] != null ? parsedJson['formlessons'] as List : [];
-      List<Lesson> formLessons = formLessonsJson.map((i)=> Lesson.fromJson(i)).toList();
-      return AppState( courses, lessons, formLessons, Colors.red.value, null );
+      List<Lesson> formLessons = List.from(lessons);
+      formLessons.forEach((lesson){
+        if(!lesson.isEmpty && !lesson.isNotSelected){
+          lesson = Lesson(
+            lessonId: lesson.lessonId,
+            courseId: lesson.courseId,
+            course: lesson.course,
+            selected: false,
+          );
+        }
+      });
+      return AppState( courses, lessons, formLessons, mandarin.value, null );
     }
     else{
       return AppState.initial();
@@ -47,7 +56,6 @@ class AppState {
   dynamic toJson() => {
     'courses': courses,
     'lessons': lessons,
-    'formlessons' : formLessons,
   };
 }
 

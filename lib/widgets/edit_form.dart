@@ -70,7 +70,7 @@ class _EditFormState extends State<EditForm>{
                                 color: Colors.white,
                               ),
                               decoration: new InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 2.0),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2.0),
                                 hintText: "Materia",
                                 hintStyle: TextStyle(
                                   color: romanSilver,
